@@ -1,5 +1,5 @@
 {
-  "description": "Local resolution map for the belief-collections in this staging monorepo: namespace -> path to that collection's beliefs.json, relative to this file. `mix cb.verify.collection` uses it to resolve a collection's declared depends_on and load the union for verification. On the eventual repo split this is replaced by real dependency resolution; the durable declarations live in each collection's manifest.json.",
+  "description": "Local resolution map for the belief-collections in this repo: namespace -> path to that collection's beliefs.json, relative to this file (cb resolves to the sibling composable-beliefs checkout). `mix cb.verify.collection` uses it to resolve a collection's declared depends_on and load the union for verification. When cross-repo dependency resolution lands this is replaced by real resolution; the durable declarations live in each collection's manifest.json.",
   "collections": {
     "cb": "../composable-beliefs/beliefs/beliefs.json",
     "agent-behavior": "agent-behavior/beliefs.json",

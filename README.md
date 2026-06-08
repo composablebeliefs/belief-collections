@@ -12,10 +12,12 @@ on the framework's own `cb:` graph (schema + mechanism); `cb:` depends on nothin
 | `agent-behavior/` | `agent-behavior` | `cb`, `paradigm` | Reasoning errors, interaction patterns, and corrective rules observed in operation. |
 | `paradigm/` | `paradigm` | `cb`, `agent-behavior` | Meta-observations on how the human-agent system works and should work. |
 | `library/` | `lib` | — | A self-contained worked example (a lending library) with its own enum contracts. The gentle on-ramp before the self-referential `cb:` graph. |
+| `eval-provenance/` | `sdl` | — | A self-contained worked example of the eval evidence-provenance capability: one published eval (`silent-data-loss-v1`) in miniature, from atomic scored observations up to downstream routing guidance. Declares its own artifact-scheme enum so it verifies standalone. |
 
 `agent-behavior:` and `paradigm:` are **compositionally coupled** — compounds in
 one compose beliefs in the other (a real cross-namespace chain), so they
-co-resolve as a pair rather than separating cleanly. `lib:` is fully standalone.
+co-resolve as a pair rather than separating cleanly. `lib:` and `sdl:` are each
+fully standalone.
 
 `collections.json` is the local resolution map (namespace → path to that
 collection's `beliefs.json`); the durable dependency declarations live in each

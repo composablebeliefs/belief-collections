@@ -4,7 +4,7 @@ A documented schema for the `lib:` library collection (in `belief-collections`).
 follows the same structural discipline as the main `cb:` graph (see the framework's
 `docs/belief-graph.md` and `lib/cb/belief.ex`), scoped to what the example needs.
 
-`mix cb.verify.schema --beliefs ../cb-collections-staging/library/beliefs.json`
+`mix cb.verify.schema --beliefs ../belief-collections/library/beliefs.json`
 verifies this collection against its *own* schema contracts (below): the verifier
 discovers each enum by the field it declares, so the same tool that checks the main
 `cb:` graph checks this one. `mix cb.verify.collection lib` does the same through the
@@ -55,4 +55,4 @@ general rule for any host graph.
 - 14 beliefs: 6 primitive, 2 compound, 6 implication (4 of them contracts).
 - Exactly one superseded node (`lib:a002`) and one stale node (`lib:a011`).
 - Every `deps` entry resolves to a node in the collection.
-- `mix cb.verify.collection lib` (or `mix cb.verify.schema --beliefs ../cb-collections-staging/library/beliefs.json`) passes with no failures and no skips.
+- `mix cb.verify.collection lib` (or `mix cb.verify.schema --beliefs ../belief-collections/library/beliefs.json`) passes with no failures and no skips.

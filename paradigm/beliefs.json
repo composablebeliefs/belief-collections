@@ -5,12 +5,12 @@
     "kind": "meta-observation",
     "tags": [],
     "claim": "Sufficiently advanced agentic coding is essentially machine learning: engineer sets optimization goal and constraints (spec + tests), coding agents iterate until goal is reached, result is a blackbox model (the generated codebase) deployed without inspecting internal logic - implying classic ML pathologies will follow",
-    "artifact": "https://example.org/agentic-coding-is-ml",
+    "artifact": "source:agentic-coding-is-ml",
     "evidence": [
       {
         "date": "2026-03-13",
         "detail": "A widely-shared post argued that agentic coding is machine learning: the engineer sets the optimization goal and constraints (spec + tests), an optimization process (coding agents) iterates until the goal is reached, and the result is a blackbox (the generated codebase) deployed without inspecting internal logic. It identifies pathologies that follow: overfitting to the spec, Clever Hans shortcuts that do not generalize outside the tests, data leakage, concept drift. It asks what the optimal set of high-level abstractions is that lets humans steer codebase 'training' with minimal cognitive overhead.",
-        "artifact": "https://example.org/agentic-coding-is-ml"
+        "artifact": "source:agentic-coding-is-ml"
       }
     ],
     "subjects": [

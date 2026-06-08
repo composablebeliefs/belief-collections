@@ -14,12 +14,12 @@ This collection lives in `belief-collections`; the `mix` tasks live in the
 framework. Run them from the framework root (`composable-beliefs/`),
 pointing at this collection:
 
-    mix bs --beliefs ../cb-collections-staging/library/beliefs.json stats
+    mix bs --beliefs ../belief-collections/library/beliefs.json stats
 
 or, to avoid repeating the flag, export the env var the rest of this walkthrough
 assumes:
 
-    export CB_BELIEFS=../cb-collections-staging/library/beliefs.json
+    export CB_BELIEFS=../belief-collections/library/beliefs.json
     mix bs stats
 
 You should see 14 beliefs - 6 primitives, 2 compounds, 6 implications (4 of them
@@ -118,7 +118,7 @@ anywhere - they are declared by beliefs *in* the collection:
 `kind`, `domain`, and `artifact-scheme` vocabularies. The verifier checks the
 collection against them:
 
-    mix cb.verify.schema --beliefs ../cb-collections-staging/library/beliefs.json
+    mix cb.verify.schema --beliefs ../belief-collections/library/beliefs.json
 
 Every check passes, and none is hard-coded to this collection: the verifier
 *discovers* each enum by the field it declares. (The belief status lifecycle -

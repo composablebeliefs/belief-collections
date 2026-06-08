@@ -1916,10 +1916,6 @@
       {
         "ref": "agent",
         "type": "agent"
-      },
-      {
-        "ref": "a221",
-        "type": "belief"
       }
     ],
     "deps": [],
@@ -2349,6 +2345,7 @@
     "deps": [
       "agent-behavior:a353",
       "agent-behavior:a354",
+      "paradigm:a347",
       "paradigm:a349",
       "agent-behavior:a072"
     ],
