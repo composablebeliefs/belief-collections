@@ -817,5 +817,200 @@
   "deps": [],
   "status": "active",
   "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a368",
+  "type": "directive",
+  "kind": "convention",
+  "domain": "design",
+  "tags": [
+   "evidence-grade",
+   "anecdote"
+  ],
+  "claim": "Beliefs derived from single-operator field use carry the tag 'anecdote': they link, dep, and surface like any belief, and any methodology contract may discount them by tag. The fixture-tag precedent applied to evidence grade - anecdotal-but-inspectable is a first-class class of evidence, never a caveat in prose, and never mistakable for an eval finding.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "Minted in the significance exchange: the operator judged the system's first self-application worth recording ahead of proper eval evidence, on condition the grade is visible. Stipulated by the thread; modeled on method:a5's fixture rule.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a369",
+  "type": "primitive",
+  "kind": "outcome-claim",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "self-application",
+   "verification"
+  ],
+  "claim": "During the four-type schema landing (2026-06-10), the system's deterministic checks did load-bearing work against their own authors: preflight surfaced two contracts missing from a twice-reviewed supersession list (c026/c027), the subject-containment check found a genuine escape no one had flagged (agent-behavior:a123), the kind-type table forced roughly thirty re-homes the design inventory said would not exist, and the grounding rule exposed its own scheme list as incomplete against the design's own worked examples.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "Each instance is independently walkable: the preflight reviews live in the plan-0 primitives' evidence, a123's re-home in its supersession record, the re-homes in the migration report, the document: amendment inline in design.md. Anecdote-tagged: single operator, no counterfactual.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a370",
+  "type": "primitive",
+  "kind": "outcome-claim",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "self-application",
+   "self-hosting"
+  ],
+  "claim": "The system absorbed a breaking change to its own foundations through its own front door: the status-lifecycle contract was superseded via the lifecycle it defines, the type enum replaced through adjudication, with no maintenance hatch used because none was needed - the audit trail stayed complete at the exact place such trails normally go dark.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "The operator-side counterpart of cb:a498 (the shippable design-property statement); this node records that it happened in live use, anecdote-tagged.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a371",
+  "type": "primitive",
+  "kind": "outcome-claim",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "multi-session",
+   "coordination"
+  ],
+  "claim": "Three agent sessions worked the same two repos concurrently (2026-06-10/11) without colliding: positions extracted, a deviation recorded, the version vocabulary retired, and the schema landing pushed - each session reconstructing state from the graph and its records rather than from any shared conversation memory. The single-trust-domain case of the shared-epistemic-layer thesis now has an existence proof.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "The sessions held disjoint session memories; coordination ran entirely through the substrate. The multi-party, cross-trust-boundary case remains open (cb:a495 on the desk). Anecdote-tagged.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a372",
+  "type": "primitive",
+  "kind": "meta-observation",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "meta-regress",
+   "governance"
+  ],
+  "claim": "The meta-regress terminated in practice: every should-this-be-persisted question in the stasis discussion was answerable by the system's own rules, and when a rule was missing, minting it took one node (cb:a496) which immediately governed the next decision (cb:a497) - the rules about rules live in the same substrate as the rules, so there is no second system to maintain.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "a496's first governed decision was its own persistence path; its second was a497's. Anecdote-tagged.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a373",
+  "type": "inference",
+  "kind": "outcome-claim",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "self-application"
+  ],
+  "claim": "Under its first heavy self-application load, the mechanism self-corrected: the checks caught their authors' errors, the foundations changed without a bypass, concurrent sessions coordinated through the substrate, and the meta-level governed itself. Anecdotal evidence, single-operator and counterfactual-free, that the system points the right direction - the hypothesis the dag-vs-prose eval exists to adjudicate, not a finding.",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "The generalization over a369-a372, drawn in the significance exchange with its deflators attached (n=1, authoring-time only per cb:a493, smoothness discounted as the least trustworthy signal).",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [
+   "paradigm:a369",
+   "paradigm:a370",
+   "paradigm:a371",
+   "paradigm:a372"
+  ],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a374",
+  "type": "primitive",
+  "kind": "meta-observation",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "ssot",
+   "dry"
+  ],
+  "who": "mark",
+  "claim": "The structure self-regulates because it is granular SSOT ensuring DRY: every fact has exactly one home at claim granularity, references between facts are machine-checked (staleness, verification, preflight), and the meta-level lives in the same substrate as the object level - so layers of cognitive cruft cannot silently accumulate on top of the system, because a new layer must dep on the old and collides in preflight if it quietly contradicts it.",
+  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "Mark's formulation in the significance exchange, sharpened in discussion: DRY here is an invariant with an alarm rather than a virtue, and claim-level granularity makes supersession surgical where page-level SSOT forces provenance-destroying rewrites.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a375",
+  "type": "primitive",
+  "kind": "analogical-claim",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "event-sourcing",
+   "structural-parallel"
+  ],
+  "claim": "CB is to epistemics what Temporal is to execution: both are event-sourced - state as a fold over an immutable append-only history - which makes surviving a boundary (worker crash there, session end here) a structural property rather than a discipline. The difference is what replay reconstructs: Temporal replays execution and answers where the workflow was; CB's history is semantic and walking it reconstructs justification - why this is believed and what still rests on it. Belief graph : agent sessions :: event history : Temporal workers.",
+  "artifact": "https://temporal.io",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "Raised by Mark in the significance exchange (the queryable/replayable quality harkening to Temporal); sibling to a355's BEAM analogy in the same structural-parallel family.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
  }
 ]
