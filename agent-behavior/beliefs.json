@@ -2844,6 +2844,11 @@
         "date": "2026-06-12",
         "detail": "Agent read the repos (many CB drafts and chronicles, zero third-party evals executed) and concluded the substrate-over-shipping failure mode was already winning. Operator corrected: CB was closing out a months-long active development phase, the evals work was deliberately sequenced to begin days later, and the operator was still studying eval fundamentals. The snapshot was accurate; the trajectory inference was wrong. Theory: snapshot evidence cannot distinguish drift from sequencing without intent context. Tag-overlap review: nearest neighbors a165 (memory substituted for reading current state) and a358 (silently resolving open questions) describe different mechanisms; no existing claim covers trajectory-from-snapshot, so no conflict.",
         "artifact": "user:monetization-contingency-2026-06-12"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Retro-pair per cb:a507: the correction is readable in context at the paired artifact (USER 4 of the thread).",
+        "artifact": "document:../amieval-direction/direction/2026-06-12-thread/conversation.md"
       }
     ],
     "subjects": [
