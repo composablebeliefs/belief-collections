@@ -8,6 +8,7 @@
     "method": "method/beliefs.json",
     "sdl": "eval-provenance/beliefs.json",
     "toy": "toy-eval/beliefs.json",
-    "codepath": "../composable-beliefs/codepath/beliefs.json"
+    "codepath": "../composable-beliefs/codepath/beliefs.json",
+    "knowledge": "../knowledge/beliefs/beliefs.json"
   }
 }
