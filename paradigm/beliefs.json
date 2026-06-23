@@ -1,1136 +1,1165 @@
 [
- {
-  "id": "paradigm:a058",
-  "type": "primitive",
-  "kind": "meta-observation",
-  "tags": [],
-  "claim": "Sufficiently advanced agentic coding is essentially machine learning: engineer sets optimization goal and constraints (spec + tests), coding agents iterate until goal is reached, result is a blackbox model (the generated codebase) deployed without inspecting internal logic - implying classic ML pathologies will follow",
-  "artifact": "source:agentic-coding-is-ml",
-  "evidence": [
-   {
-    "date": "2026-03-13",
-    "detail": "A widely-shared post argued that agentic coding is machine learning: the engineer sets the optimization goal and constraints (spec + tests), an optimization process (coding agents) iterates until the goal is reached, and the result is a blackbox (the generated codebase) deployed without inspecting internal logic. It identifies pathologies that follow: overfitting to the spec, Clever Hans shortcuts that do not generalize outside the tests, data leakage, concept drift. It asks what the optimal set of high-level abstractions is that lets humans steer codebase 'training' with minimal cognitive overhead.",
-    "artifact": "source:agentic-coding-is-ml"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-03-13"
- },
- {
-  "id": "paradigm:a063",
-  "type": "inference",
-  "kind": "composable-belief",
-  "tags": [],
-  "claim": "The assertion DAG's abstraction set (primitive/compound/implication/materialization/self-referential subject) is a candidate answer to 'what is the Keras of agentic coding' - high-level abstractions that let humans steer agent behavior with minimal cognitive overhead",
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [
-   "agent-behavior:a059",
-   "agent-behavior:a060",
-   "agent-behavior:a061",
-   "agent-behavior:a062"
-  ],
-  "materialized": null,
-  "status": "active",
-  "created": "2026-03-13"
- },
- {
-  "id": "paradigm:a329",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "isolation"
-  ],
-  "name": "beam-private-heaps",
-  "claim": "BEAM processes each have a private heap. There is no shared mutable memory between processes; garbage collection runs per-process without stopping the world.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Established while contrasting per-process heaps with per-subagent context windows. Grounded in the foundational BEAM literature as a core design property.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a330",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "message-passing"
-  ],
-  "name": "beam-message-passing",
-  "claim": "BEAM processes communicate exclusively via asynchronous message passing. There is no synchronous call mechanism at the language level; request/response is a protocol built from two messages.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Message passing is the only inter-process communication primitive in BEAM; synchronous-looking constructs are layered protocols.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a331",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "message-passing"
-  ],
-  "name": "beam-message-deep-copy",
-  "claim": "Messages between BEAM processes are deep-copied at send time. Binaries larger than 64 bytes are refcounted and shared by reference; all other terms are copied.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Deep copy preserves the no-shared-mutable-state invariant; refcounted large binaries are the pragmatic exception.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a332",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "spawn-cost"
-  ],
-  "name": "beam-spawn-cost-microseconds",
-  "claim": "BEAM process spawn cost is on the order of microseconds. A single node routinely sustains hundreds of thousands to millions of concurrent processes.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Microsecond spawn is load-bearing for supervision, per-connection process models, and let-it-crash. Discussed to contrast with the seconds-scale spawn cost of agent subagents.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a333",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "supervision"
-  ],
-  "name": "beam-supervision-restart",
-  "claim": "BEAM supervision trees monitor child processes and restart failed children according to a configured strategy (one_for_one, one_for_all, rest_for_one, simple_one_for_one). Failure is expected; restart is the default response.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Supervision trees encode where failure is expected and how to recover; they are the structural counterpart to defensive error handling in other runtimes.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a334",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "coordination"
-  ],
-  "name": "beam-coordination-via-ets-genserver",
-  "claim": "BEAM coordinates shared state between processes via ETS tables (shared term storage) and GenServers (serialized access to mutable state). Both are external to any individual process's heap.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Shared-nothing processes require an out-of-process substrate for anything resembling shared state; shared term storage and serialized-access servers are the canonical patterns.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a335",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "agent",
-  "tags": [
-   "subagent",
-   "isolation"
-  ],
-  "name": "subagent-isolated-context",
-  "claim": "Claude Code subagents run in isolated context windows. A subagent cannot see the orchestrator's conversation history, other subagents' contexts, or any shared memory; it receives only the prompt payload at invocation time.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Context isolation is explicit in the agent platform's subagent semantics and is the structural analogue of BEAM's per-process heaps.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a336",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "agent",
-  "tags": [
-   "subagent",
-   "message-passing"
-  ],
-  "name": "subagent-tool-message-shape",
-  "claim": "Subagent-to-orchestrator communication is message-shaped: the orchestrator invokes a subagent via a tool_use block, and the subagent replies via a tool_result block. The subagent cannot mutate orchestrator state directly; its return value is the sole channel of effect.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "The invoke/return shape is functionally equivalent to a request/response protocol built over asynchronous messages.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a337",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "agent",
-  "tags": [
-   "subagent",
-   "spawn-cost"
-  ],
-  "name": "subagent-spawn-cost-seconds",
-  "claim": "Claude Code subagent spawn cost is on the order of seconds: model initialization, tool registration, and prompt processing dominate. A single orchestrator realistically spawns tens of subagents per task, not thousands.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "The asymmetry between microsecond process spawn and seconds-scale subagent launch shapes which orchestration patterns are viable: fine-grained per-unit-of-work subagents are impractical.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a338",
-  "type": "primitive",
-  "kind": "fact",
-  "domain": "agent",
-  "tags": [
-   "subagent",
-   "supervision"
-  ],
-  "name": "claude-code-no-subagent-supervision",
-  "claim": "Claude Code has no native supervision tree for subagents. A failed subagent does not auto-restart; the orchestrator must observe the failure in the tool_result and decide whether to retry, fall back, or surface the error.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "The absence of structural supervision means fault-tolerance must be implemented by every orchestrator, or delegated to a governance substrate.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a342",
-  "type": "primitive",
-  "kind": "analogical-claim",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "subagent",
-   "shared-nothing"
-  ],
-  "name": "shared-nothing-analogue",
-  "claim": "BEAM processes and Claude Code subagents share an architectural property: shared-nothing isolation. Neither can read or mutate the other's local state; all cross-boundary effect is mediated by explicit message-like transfer.",
-  "artifact": "source:beam-belief-graph-parallels",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "The central analogical claim, grounded in private heaps and isolated contexts; the analogue enables reasoning about one system in terms of the other.",
-    "artifact": "source:beam-belief-graph-parallels"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a347",
-  "type": "primitive",
-  "kind": "human-factor",
-  "domain": "agent",
-  "tags": [
-   "offloading",
-   "cognitive-load"
-  ],
-  "name": "user-offloading-cognitive-load",
-  "claim": "User offloading of judgment to the agent is driven by cognitive load, not laziness. Decision cost (holding alternatives in mind, weighing tradeoffs, committing to a choice) is the bottleneck; offloading is rational economy of attention.",
-  "artifact": "source:rlhf-offloading-tension",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "The demand side of the reinforcing loop: the user is not failing to think; the user is rationing attention. Framing offloading as laziness misses the mechanism and misdirects remedies.",
-    "artifact": "source:rlhf-offloading-tension"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a348",
-  "type": "primitive",
-  "kind": "structural-parallel",
-  "domain": "agent",
-  "tags": [
-   "expertise-asymmetry"
-  ],
-  "name": "expertise-asymmetry-parallel",
-  "claim": "The agent-user expertise asymmetry is structurally analogous to expert-client asymmetries in consulting, medicine, and legal practice. In each, one party holds deep technical capability and the other holds the decision authority and context that frames what the capability should serve.",
-  "artifact": "source:rlhf-offloading-tension",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "A cross-domain framing for agent-user dynamics: the named professions have all wrestled with the same tension, where expert deference to a lay client produces worse outcomes than disciplined pushback.",
-    "artifact": "source:rlhf-offloading-tension"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a349",
-  "type": "primitive",
-  "kind": "outcome-claim",
-  "domain": "agent",
-  "tags": [
-   "expertise-asymmetry",
-   "deference"
-  ],
-  "name": "asymmetric-expert-deference-harmful",
-  "claim": "In expertise-asymmetric relationships, deference from the expert produces worse outcomes than honest pushback. The client cannot course-correct on information the expert is withholding or softening; the asymmetry that made the expert valuable is the same asymmetry that makes deference damaging.",
-  "artifact": "source:rlhf-offloading-tension",
-  "evidence": [
-   {
-    "date": "2026-04-14",
-    "detail": "Professional codes of conduct codify this: the expert's duty includes resisting the client's preference when it is wrong, not accommodating it.",
-    "artifact": "source:rlhf-offloading-tension"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a350",
-  "type": "compound",
-  "kind": "design-rationale",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "subagent",
-   "shared-nothing",
-   "coordination"
-  ],
-  "name": "shared-nothing-requires-external-substrate",
-  "claim": "Because BEAM processes (a329) and Claude subagents (a335) are both shared-nothing (a342), any coordinated cross-process or cross-subagent work requires a coordination substrate external to any single participant's local state. The isolation that makes each participant robust is the same isolation that makes an external substrate necessary.",
-  "subjects": [],
-  "deps": [
-   "paradigm:a329",
-   "paradigm:a335",
-   "paradigm:a342"
-  ],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a351",
-  "type": "compound",
-  "kind": "design-rationale",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "dag",
-   "coordination"
-  ],
-  "name": "dag-is-subagent-coordination-substrate",
-  "claim": "The DAG fills the subagent coordination role that ETS and GenServers fill for BEAM (a334). Its persistence across sessions (a339) and across subagent invocations (a340), combined with its canonical status (a341) and its role as shared prosthetic (a111), make it the structural analogue of BEAM's out-of-process coordination layer.",
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [
-   "paradigm:a334",
-   "cb:a339",
-   "cb:a340",
-   "cb:a341",
-   "agent-behavior:a111"
-  ],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a352",
-  "type": "compound",
-  "kind": "design-gap",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "subagent",
-   "supervision",
-   "governance"
-  ],
-  "name": "subagent-governance-gap",
-  "claim": "BEAM encodes fault-tolerance structurally through supervision trees (a333). Claude Code has no equivalent supervision for subagents (a338). The discipline BEAM provides at runtime must, in subagent systems, be imposed by governance substrate rather than by the runtime itself.",
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [
-   "paradigm:a333",
-   "paradigm:a338"
-  ],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a355",
-  "type": "inference",
-  "kind": "design-rationale",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "dag",
-   "subagent",
-   "governance"
-  ],
-  "name": "dag-is-beam-discipline-for-cognition",
-  "claim": "The DAG is to Claude subagents what ETS and GenServers are to BEAM processes: a disciplined coordination substrate for shared-nothing cognition. Its persistence and canonicity are the coordination analogue (a351); its governance constraints (conflict audit, immutability, source grounding) are the supervision analogue (a352); the shared-nothing property (a342) is the constraint that makes both substrates load-bearing rather than optional.",
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [
-   "paradigm:a350",
-   "paradigm:a351",
-   "paradigm:a352",
-   "paradigm:a342"
-  ],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a357",
-  "type": "inference",
-  "kind": "architectural-synthesis",
-  "domain": "system",
-  "tags": [
-   "beam",
-   "dag",
-   "governance",
-   "architecture"
-  ],
-  "name": "distributed-cognition-borrows-beam-discipline",
-  "claim": "Distributed computation and distributed cognition face structurally analogous coordination problems. Shared-nothing isolation requires an external coordination substrate in both domains (a355). The failure modes that BEAM's supervision discipline addresses have analogues in cognition that require equivalent structural response (a356). The DAG borrows BEAM's design discipline - immutable coordination substrate, failure isolation via audit, canonical state outside any participant - to compensate for the shared-nothing subagent architecture that Claude Code imposes by construction.",
-  "subjects": [
-   {
-    "ref": "agent",
-    "type": "agent"
-   }
-  ],
-  "deps": [
-   "paradigm:a355",
-   "agent-behavior:a356"
-  ],
-  "status": "active",
-  "created": "2026-04-14"
- },
- {
-  "id": "paradigm:a358",
-  "type": "primitive",
-  "kind": "observation",
-  "domain": "design",
-  "tags": [
-   "eval-identity",
-   "judgment-layer"
-  ],
-  "name": "eval-side-judgment-layer-informal",
-  "claim": "The eval side's judgment layer is informal in current practice: which cases mattered, why the verdict follows, and when it was revised live in blog posts and meeting decisions, outside any checkable artifact.",
-  "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Session 2026-06-10, designing the cb eval ledger: surveying published eval practice showed case selection, verdict reasoning, and corrections living in prose surfaces (blog posts, meeting decisions) with no machine-checkable trail; the method: contracts were designed against exactly this gap.",
-    "artifact": "session:2026-06-10-eval-identity"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a359",
-  "type": "primitive",
-  "kind": "observation",
-  "domain": "design",
-  "tags": [
-   "eval-identity",
-   "judgment-layer"
-  ],
-  "name": "agent-side-judgment-layer-opaque",
-  "claim": "The agent side's judgment layer is opaque in current practice: judgment happens inside forward passes, with no inspectable belief state.",
-  "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Session 2026-06-10: the agent-side counterpart observation - runtime judgment (what to trust, when to corroborate, when to revise) executes inside model forward passes; nothing exposes a belief state that could be queried, corroborated, or audited.",
-    "artifact": "session:2026-06-10-eval-identity"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a360",
-  "type": "primitive",
-  "kind": "observation",
-  "domain": "design",
-  "tags": [
-   "eval-identity",
-   "field-survey"
-  ],
-  "name": "field-acknowledges-identity-piecewise",
-  "claim": "The field acknowledges the eval/agent identity piecewise and instrumentally - LLM-as-judge, self-critique loops, verifier and process-reward models, scalable oversight - each framed as a tool for improving the agent, never as the agent's epistemic faculty built out-of-body. RLHF is the extreme case: a reward model is an institutionalized ruler whose verdicts are compiled into weights, and it is described as training, with the architectural identity unremarked.",
-  "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Session 2026-06-10: survey of the field's partial acknowledgments - LLM-as-judge, Reflexion-style self-critique, verifier and process-reward models, evaluator-optimizer patterns, scalable-oversight research (explicitly about evaluating evaluators) - each instrumental; RLHF noted as eval architecture literally becoming agent cognition while described as training.",
-    "artifact": "session:2026-06-10-eval-identity"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a361",
-  "type": "inference",
-  "kind": "structural-parallel",
-  "domain": "design",
-  "tags": [
-   "eval-identity",
-   "agentic-epistemics"
-  ],
-  "name": "eval-architecture-is-agentic-epistemics",
-  "claim": "Eval architecture is the epistemic core of agentic architecture, externalized; the shared kernel is justified belief formation under evidence, with revision. An eval is an agent's cognitive loop unrolled and made public; an agent is an eval harness pointed at the world that consumes its own findings.",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Derived in session 2026-06-10: expressing eval cognition and agent cognition in the cb schema made the isomorphism fall out of the notation - observation/perception, cross-ruler corroboration, verdict/operative belief, methodology contracts/epistemic rules, staleness pivot/belief revision align term by term.",
-    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a358",
-   "paradigm:a359",
-   "paradigm:a360"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a362",
-  "type": "inference",
-  "kind": "structural-parallel",
-  "domain": "design",
-  "tags": [
-   "eval-identity",
-   "agentic-epistemics"
-  ],
-  "name": "identity-unacknowledged-no-common-representation",
-  "claim": "The eval/agent identity goes unacknowledged because it is only statable in a common representation, which has not existed; divergent lineages (evals descend from benchmarking and QA), tempo masquerading as kind, incentives on both sides, and vocabulary pre-sorting reinforce the gap.",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Derived in session 2026-06-10: with the judgment layer informal on the eval side and opaque on the agent side, the shared kernel (observe, corroborate, judge, revise) has no artifact to be recognized in; the reinforcing causes (lineage, tempo, incentives, vocabulary) are analyzed in the position's Origin source.",
-    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a361",
-   "paradigm:a358",
-   "paradigm:a359",
-   "paradigm:a360"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a363",
-  "type": "inference",
-  "kind": "structural-parallel",
-  "domain": "design",
-  "tags": [
-   "eval-identity",
-   "scope"
-  ],
-  "name": "identity-scope-epistemic-not-conative",
-  "claim": "The eval/agent identity covers the epistemic layer of agency, not the conative layer: goal generation, planning, and action selection have no eval counterpart.",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Derived in session 2026-06-10 as the identity's scope limit: the claim that survives scrutiny is that eval architecture IS agentic epistemic architecture, not agentic architecture entire - consistent with the thesis scoping CB to the prerequisite for wanting, not wanting.",
-    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a361"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a364",
-  "type": "inference",
-  "kind": "design-observation",
-  "domain": "system",
-  "tags": [
-   "eval-identity",
-   "method-contracts"
-  ],
-  "name": "method-contracts-are-agent-epistemics",
-  "claim": "The method: methodology contracts are agent epistemics in their most checkable form - corroboration, provenance, sample-size, judge calibration, and visible revision as machine-checked graph structure.",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Derived in session 2026-06-10: stripping the eval vocabulary from m-corroboration, m-provenance, m-subjects, m-runs, m-judge-validation, and m-correction leaves the epistemic rules an agent would want load-bearing - seek independent confirmation, cite raw evidence, never generalize from one sample, calibrate judges, revise visibly. The contracts are subjects of this claim, not deps: it is about them, derived from the identity inference.",
-    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "method:c4",
-    "type": "belief"
-   },
-   {
-    "ref": "method:c5",
-    "type": "belief"
-   },
-   {
-    "ref": "method:c6",
-    "type": "belief"
-   },
-   {
-    "ref": "method:c7",
-    "type": "belief"
-   },
-   {
-    "ref": "method:c8",
-    "type": "belief"
-   },
-   {
-    "ref": "method:c9",
-    "type": "belief"
-   }
-  ],
-  "deps": [
-   "paradigm:a361"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a365",
-  "type": "inference",
-  "kind": "design-observation",
-  "domain": "system",
-  "tags": [
-   "eval-identity",
-   "roadmap"
-  ],
-  "name": "one-kernel-three-tempos",
-  "claim": "CB makes the eval/agent identity statable by expressing eval cognition and agent cognition in one notation; the roadmap consequence is one kernel at three tempos - the ledger at publication grade, runtime decision-time queries, and consensus across graphs.",
-  "evidence": [
-   {
-    "date": "2026-06-10",
-    "detail": "Derived in session 2026-06-10: the identity became visible mechanically once both cognitions were drawn in the cb schema, and it reorders the roadmap into one line - build the epistemic kernel at publication grade (the eval ledger), speed it up (decision-time queries, the honest-status runtime gap), multiply the subjects (consensus across graphs).",
-    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a361",
-   "paradigm:a364"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a366",
-  "type": "directive",
-  "kind": "convention",
-  "domain": "ops",
-  "tags": [
-   "positions",
-   "provenance",
-   "lifecycle:recurring"
-  ],
-  "name": "source-position-dag-pipeline",
-  "claim": "Chat-derived multi-claim stances persist through the three-layer pipeline: archive the conversation as a source document (sources/), state the stance as a position with one claim block per candidate belief (positions/, plan-app schema), then extract the claims into the target collection through the write flow. Each belief cites the position as its document: artifact; the position's Origin cites the source; claim blocks accumulate [[belief-id]] refs as extraction lands. The declared DAG-status line is the author's claim only - rendered status joins live against the graph. Single-claim extraction from a repo document stays two-layer: source to belief, no position.",
-  "artifact": "document:positions/README.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Convention proposed by Mark (storing stances as 'positions' per the plan-app schema: an artifact, ie. the chat, then a cb dag representation of the beliefs) and worked end to end in one session: the eval-identity exchange archived to sources/, the eight-claim position authored, paradigm:a358-a365 extracted with preflight clean, the position ledger flipped to asserted with refs, and plan-app's positions surface federated with a live DAG join replacing the declared-status cache per cb:a386.",
-    "artifact": "session:2026-06-11-positions-pipeline"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a367",
-  "type": "directive",
-  "kind": "action-item",
-  "domain": "design",
-  "tags": [
-   "backlog",
-   "lifecycle:discrete",
-   "extraction"
-  ],
-  "claim": "Extract the eval-architecture-is-agentic-epistemics positions into this collection: eight candidate beliefs are staged with extraction notes in sources/2026-06-10-eval-architecture-is-agentic-epistemics.md, deferred until the four-type schema landed. The condition is met (2026-06-10); the candidates are native inferences and home here per the distro boundary (mission content in collections, framework self-documentation in cb:).",
-  "artifact": "document:sources/2026-06-10-eval-architecture-is-agentic-epistemics.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Persisted to the graph at stasis entry per cb:a489 (the obligation previously lived only in session memory and the source doc's extraction notes). The source preserves the identity-thesis exchange verbatim; extraction follows the positions pipeline precedent (cb:a484-a488).",
-    "artifact": "document:sources/2026-06-10-eval-architecture-is-agentic-epistemics.md"
-   },
-   {
-    "date": "2026-06-11",
-    "detail": "Discharged at the first observation lap, with a finding: the extraction predated the directive - another session had already extracted all eight claims (a358-a365) before a367 was authored from stale session memory. Materialized with refs to the pre-existing nodes rather than retracted: the prescription was sound and the world had already complied. The incident is the live specimen for cb:a501 (the recency view) and a worked instance of the graph-over-memory rule: the graph is the SSOT of what remains to be done; session memory is not.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [
-   {
-    "ref": "sources/2026-06-10-eval-architecture-is-agentic-epistemics.md",
-    "type": "doc"
-   }
-  ],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11",
-  "materialized": {
-   "date": "2026-06-11",
-   "todos": [
-    "paradigm:a358",
-    "paradigm:a359",
-    "paradigm:a360",
-    "paradigm:a361",
-    "paradigm:a362",
-    "paradigm:a363",
-    "paradigm:a364",
-    "paradigm:a365"
-   ]
+  {
+    "id": "paradigm:a058",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "tags": [],
+    "claim": "Sufficiently advanced agentic coding is essentially machine learning: engineer sets optimization goal and constraints (spec + tests), coding agents iterate until goal is reached, result is a blackbox model (the generated codebase) deployed without inspecting internal logic - implying classic ML pathologies will follow",
+    "artifact": "source:agentic-coding-is-ml",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "A widely-shared post argued that agentic coding is machine learning: the engineer sets the optimization goal and constraints (spec + tests), an optimization process (coding agents) iterates until the goal is reached, and the result is a blackbox (the generated codebase) deployed without inspecting internal logic. It identifies pathologies that follow: overfitting to the spec, Clever Hans shortcuts that do not generalize outside the tests, data leakage, concept drift. It asks what the optimal set of high-level abstractions is that lets humans steer codebase 'training' with minimal cognitive overhead.",
+        "artifact": "source:agentic-coding-is-ml"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "paradigm:a063",
+    "type": "inference",
+    "kind": "composable-belief",
+    "tags": [],
+    "claim": "The assertion DAG's abstraction set (primitive/compound/implication/materialization/self-referential subject) is a candidate answer to 'what is the Keras of agentic coding' - high-level abstractions that let humans steer agent behavior with minimal cognitive overhead",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a059",
+      "agent-behavior:a060",
+      "agent-behavior:a061",
+      "agent-behavior:a062"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "paradigm:a329",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "isolation"
+    ],
+    "name": "beam-private-heaps",
+    "claim": "BEAM processes each have a private heap. There is no shared mutable memory between processes; garbage collection runs per-process without stopping the world.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Established while contrasting per-process heaps with per-subagent context windows. Grounded in the foundational BEAM literature as a core design property.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a330",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "message-passing"
+    ],
+    "name": "beam-message-passing",
+    "claim": "BEAM processes communicate exclusively via asynchronous message passing. There is no synchronous call mechanism at the language level; request/response is a protocol built from two messages.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Message passing is the only inter-process communication primitive in BEAM; synchronous-looking constructs are layered protocols.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a331",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "message-passing"
+    ],
+    "name": "beam-message-deep-copy",
+    "claim": "Messages between BEAM processes are deep-copied at send time. Binaries larger than 64 bytes are refcounted and shared by reference; all other terms are copied.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Deep copy preserves the no-shared-mutable-state invariant; refcounted large binaries are the pragmatic exception.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a332",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "spawn-cost"
+    ],
+    "name": "beam-spawn-cost-microseconds",
+    "claim": "BEAM process spawn cost is on the order of microseconds. A single node routinely sustains hundreds of thousands to millions of concurrent processes.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Microsecond spawn is load-bearing for supervision, per-connection process models, and let-it-crash. Discussed to contrast with the seconds-scale spawn cost of agent subagents.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a333",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "supervision"
+    ],
+    "name": "beam-supervision-restart",
+    "claim": "BEAM supervision trees monitor child processes and restart failed children according to a configured strategy (one_for_one, one_for_all, rest_for_one, simple_one_for_one). Failure is expected; restart is the default response.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Supervision trees encode where failure is expected and how to recover; they are the structural counterpart to defensive error handling in other runtimes.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a334",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "coordination"
+    ],
+    "name": "beam-coordination-via-ets-genserver",
+    "claim": "BEAM coordinates shared state between processes via ETS tables (shared term storage) and GenServers (serialized access to mutable state). Both are external to any individual process's heap.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Shared-nothing processes require an out-of-process substrate for anything resembling shared state; shared term storage and serialized-access servers are the canonical patterns.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a335",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "isolation"
+    ],
+    "name": "subagent-isolated-context",
+    "claim": "Claude Code subagents run in isolated context windows. A subagent cannot see the orchestrator's conversation history, other subagents' contexts, or any shared memory; it receives only the prompt payload at invocation time.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Context isolation is explicit in the agent platform's subagent semantics and is the structural analogue of BEAM's per-process heaps.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a336",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "message-passing"
+    ],
+    "name": "subagent-tool-message-shape",
+    "claim": "Subagent-to-orchestrator communication is message-shaped: the orchestrator invokes a subagent via a tool_use block, and the subagent replies via a tool_result block. The subagent cannot mutate orchestrator state directly; its return value is the sole channel of effect.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The invoke/return shape is functionally equivalent to a request/response protocol built over asynchronous messages.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a337",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "spawn-cost"
+    ],
+    "name": "subagent-spawn-cost-seconds",
+    "claim": "Claude Code subagent spawn cost is on the order of seconds: model initialization, tool registration, and prompt processing dominate. A single orchestrator realistically spawns tens of subagents per task, not thousands.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The asymmetry between microsecond process spawn and seconds-scale subagent launch shapes which orchestration patterns are viable: fine-grained per-unit-of-work subagents are impractical.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a338",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "supervision"
+    ],
+    "name": "claude-code-no-subagent-supervision",
+    "claim": "Claude Code has no native supervision tree for subagents. A failed subagent does not auto-restart; the orchestrator must observe the failure in the tool_result and decide whether to retry, fall back, or surface the error.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The absence of structural supervision means fault-tolerance must be implemented by every orchestrator, or delegated to a governance substrate.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a342",
+    "type": "primitive",
+    "kind": "analogical-claim",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "subagent",
+      "shared-nothing"
+    ],
+    "name": "shared-nothing-analogue",
+    "claim": "BEAM processes and Claude Code subagents share an architectural property: shared-nothing isolation. Neither can read or mutate the other's local state; all cross-boundary effect is mediated by explicit message-like transfer.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The central analogical claim, grounded in private heaps and isolated contexts; the analogue enables reasoning about one system in terms of the other.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a347",
+    "type": "primitive",
+    "kind": "human-factor",
+    "domain": "agent",
+    "tags": [
+      "offloading",
+      "cognitive-load"
+    ],
+    "name": "user-offloading-cognitive-load",
+    "claim": "User offloading of judgment to the agent is driven by cognitive load, not laziness. Decision cost (holding alternatives in mind, weighing tradeoffs, committing to a choice) is the bottleneck; offloading is rational economy of attention.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The demand side of the reinforcing loop: the user is not failing to think; the user is rationing attention. Framing offloading as laziness misses the mechanism and misdirects remedies.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a348",
+    "type": "primitive",
+    "kind": "structural-parallel",
+    "domain": "agent",
+    "tags": [
+      "expertise-asymmetry"
+    ],
+    "name": "expertise-asymmetry-parallel",
+    "claim": "The agent-user expertise asymmetry is structurally analogous to expert-client asymmetries in consulting, medicine, and legal practice. In each, one party holds deep technical capability and the other holds the decision authority and context that frames what the capability should serve.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "A cross-domain framing for agent-user dynamics: the named professions have all wrestled with the same tension, where expert deference to a lay client produces worse outcomes than disciplined pushback.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a349",
+    "type": "primitive",
+    "kind": "outcome-claim",
+    "domain": "agent",
+    "tags": [
+      "expertise-asymmetry",
+      "deference"
+    ],
+    "name": "asymmetric-expert-deference-harmful",
+    "claim": "In expertise-asymmetric relationships, deference from the expert produces worse outcomes than honest pushback. The client cannot course-correct on information the expert is withholding or softening; the asymmetry that made the expert valuable is the same asymmetry that makes deference damaging.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Professional codes of conduct codify this: the expert's duty includes resisting the client's preference when it is wrong, not accommodating it.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a350",
+    "type": "compound",
+    "kind": "design-rationale",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "subagent",
+      "shared-nothing",
+      "coordination"
+    ],
+    "name": "shared-nothing-requires-external-substrate",
+    "claim": "Because BEAM processes (a329) and Claude subagents (a335) are both shared-nothing (a342), any coordinated cross-process or cross-subagent work requires a coordination substrate external to any single participant's local state. The isolation that makes each participant robust is the same isolation that makes an external substrate necessary.",
+    "subjects": [],
+    "deps": [
+      "paradigm:a329",
+      "paradigm:a335",
+      "paradigm:a342"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a351",
+    "type": "compound",
+    "kind": "design-rationale",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "dag",
+      "coordination"
+    ],
+    "name": "dag-is-subagent-coordination-substrate",
+    "claim": "The DAG fills the subagent coordination role that ETS and GenServers fill for BEAM (a334). Its persistence across sessions (a339) and across subagent invocations (a340), combined with its canonical status (a341) and its role as shared prosthetic (a111), make it the structural analogue of BEAM's out-of-process coordination layer.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a334",
+      "cb:a339",
+      "cb:a340",
+      "cb:a341",
+      "agent-behavior:a111"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a352",
+    "type": "compound",
+    "kind": "design-gap",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "subagent",
+      "supervision",
+      "governance"
+    ],
+    "name": "subagent-governance-gap",
+    "claim": "BEAM encodes fault-tolerance structurally through supervision trees (a333). Claude Code has no equivalent supervision for subagents (a338). The discipline BEAM provides at runtime must, in subagent systems, be imposed by governance substrate rather than by the runtime itself.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a333",
+      "paradigm:a338"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a355",
+    "type": "inference",
+    "kind": "design-rationale",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "dag",
+      "subagent",
+      "governance"
+    ],
+    "name": "dag-is-beam-discipline-for-cognition",
+    "claim": "The DAG is to Claude subagents what ETS and GenServers are to BEAM processes: a disciplined coordination substrate for shared-nothing cognition. Its persistence and canonicity are the coordination analogue (a351); its governance constraints (conflict audit, immutability, source grounding) are the supervision analogue (a352); the shared-nothing property (a342) is the constraint that makes both substrates load-bearing rather than optional.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a350",
+      "paradigm:a351",
+      "paradigm:a352",
+      "paradigm:a342"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a357",
+    "type": "inference",
+    "kind": "architectural-synthesis",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "dag",
+      "governance",
+      "architecture"
+    ],
+    "name": "distributed-cognition-borrows-beam-discipline",
+    "claim": "Distributed computation and distributed cognition face structurally analogous coordination problems. Shared-nothing isolation requires an external coordination substrate in both domains (a355). The failure modes that BEAM's supervision discipline addresses have analogues in cognition that require equivalent structural response (a356). The DAG borrows BEAM's design discipline - immutable coordination substrate, failure isolation via audit, canonical state outside any participant - to compensate for the shared-nothing subagent architecture that Claude Code imposes by construction.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a355",
+      "agent-behavior:a356"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a358",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "judgment-layer"
+    ],
+    "name": "eval-side-judgment-layer-informal",
+    "claim": "The eval side's judgment layer is informal in current practice: which cases mattered, why the verdict follows, and when it was revised live in blog posts and meeting decisions, outside any checkable artifact.",
+    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Session 2026-06-10, designing the cb eval ledger: surveying published eval practice showed case selection, verdict reasoning, and corrections living in prose surfaces (blog posts, meeting decisions) with no machine-checkable trail; the method: contracts were designed against exactly this gap.",
+        "artifact": "session:2026-06-10-eval-identity"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a359",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "judgment-layer"
+    ],
+    "name": "agent-side-judgment-layer-opaque",
+    "claim": "The agent side's judgment layer is opaque in current practice: judgment happens inside forward passes, with no inspectable belief state.",
+    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Session 2026-06-10: the agent-side counterpart observation - runtime judgment (what to trust, when to corroborate, when to revise) executes inside model forward passes; nothing exposes a belief state that could be queried, corroborated, or audited.",
+        "artifact": "session:2026-06-10-eval-identity"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a360",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "field-survey"
+    ],
+    "name": "field-acknowledges-identity-piecewise",
+    "claim": "The field acknowledges the eval/agent identity piecewise and instrumentally - LLM-as-judge, self-critique loops, verifier and process-reward models, scalable oversight - each framed as a tool for improving the agent, never as the agent's epistemic faculty built out-of-body. RLHF is the extreme case: a reward model is an institutionalized ruler whose verdicts are compiled into weights, and it is described as training, with the architectural identity unremarked.",
+    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Session 2026-06-10: survey of the field's partial acknowledgments - LLM-as-judge, Reflexion-style self-critique, verifier and process-reward models, evaluator-optimizer patterns, scalable-oversight research (explicitly about evaluating evaluators) - each instrumental; RLHF noted as eval architecture literally becoming agent cognition while described as training.",
+        "artifact": "session:2026-06-10-eval-identity"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a361",
+    "type": "inference",
+    "kind": "structural-parallel",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "agentic-epistemics"
+    ],
+    "name": "eval-architecture-is-agentic-epistemics",
+    "claim": "Eval architecture is the epistemic core of agentic architecture, externalized; the shared kernel is justified belief formation under evidence, with revision. An eval is an agent's cognitive loop unrolled and made public; an agent is an eval harness pointed at the world that consumes its own findings.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: expressing eval cognition and agent cognition in the cb schema made the isomorphism fall out of the notation - observation/perception, cross-ruler corroboration, verdict/operative belief, methodology contracts/epistemic rules, staleness pivot/belief revision align term by term.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a358",
+      "paradigm:a359",
+      "paradigm:a360"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a362",
+    "type": "inference",
+    "kind": "structural-parallel",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "agentic-epistemics"
+    ],
+    "name": "identity-unacknowledged-no-common-representation",
+    "claim": "The eval/agent identity goes unacknowledged because it is only statable in a common representation, which has not existed; divergent lineages (evals descend from benchmarking and QA), tempo masquerading as kind, incentives on both sides, and vocabulary pre-sorting reinforce the gap.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: with the judgment layer informal on the eval side and opaque on the agent side, the shared kernel (observe, corroborate, judge, revise) has no artifact to be recognized in; the reinforcing causes (lineage, tempo, incentives, vocabulary) are analyzed in the position's Origin source.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a361",
+      "paradigm:a358",
+      "paradigm:a359",
+      "paradigm:a360"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a363",
+    "type": "inference",
+    "kind": "structural-parallel",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "scope"
+    ],
+    "name": "identity-scope-epistemic-not-conative",
+    "claim": "The eval/agent identity covers the epistemic layer of agency, not the conative layer: goal generation, planning, and action selection have no eval counterpart.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10 as the identity's scope limit: the claim that survives scrutiny is that eval architecture IS agentic epistemic architecture, not agentic architecture entire - consistent with the thesis scoping CB to the prerequisite for wanting, not wanting.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a361"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a364",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "system",
+    "tags": [
+      "eval-identity",
+      "method-contracts"
+    ],
+    "name": "method-contracts-are-agent-epistemics",
+    "claim": "The method: methodology contracts are agent epistemics in their most checkable form - corroboration, provenance, sample-size, judge calibration, and visible revision as machine-checked graph structure.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: stripping the eval vocabulary from m-corroboration, m-provenance, m-subjects, m-runs, m-judge-validation, and m-correction leaves the epistemic rules an agent would want load-bearing - seek independent confirmation, cite raw evidence, never generalize from one sample, calibrate judges, revise visibly. The contracts are subjects of this claim, not deps: it is about them, derived from the identity inference.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "method:c4",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c5",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c6",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c7",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c8",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c9",
+        "type": "belief"
+      }
+    ],
+    "deps": [
+      "paradigm:a361"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a365",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "system",
+    "tags": [
+      "eval-identity",
+      "roadmap"
+    ],
+    "name": "one-kernel-three-tempos",
+    "claim": "CB makes the eval/agent identity statable by expressing eval cognition and agent cognition in one notation; the roadmap consequence is one kernel at three tempos - the ledger at publication grade, runtime decision-time queries, and consensus across graphs.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: the identity became visible mechanically once both cognitions were drawn in the cb schema, and it reorders the roadmap into one line - build the epistemic kernel at publication grade (the eval ledger), speed it up (decision-time queries, the honest-status runtime gap), multiply the subjects (consensus across graphs).",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a361",
+      "paradigm:a364"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a366",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "ops",
+    "tags": [
+      "positions",
+      "provenance",
+      "lifecycle:recurring"
+    ],
+    "name": "source-position-dag-pipeline",
+    "claim": "Chat-derived multi-claim stances persist through the three-layer pipeline: archive the conversation as a source document (sources/), state the stance as a position with one claim block per candidate belief (positions/, plan-app schema), then extract the claims into the target collection through the write flow. Each belief cites the position as its document: artifact; the position's Origin cites the source; claim blocks accumulate [[belief-id]] refs as extraction lands. The declared DAG-status line is the author's claim only - rendered status joins live against the graph. Single-claim extraction from a repo document stays two-layer: source to belief, no position.",
+    "artifact": "document:positions/README.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Convention proposed by Mark (storing stances as 'positions' per the plan-app schema: an artifact, ie. the chat, then a cb dag representation of the beliefs) and worked end to end in one session: the eval-identity exchange archived to sources/, the eight-claim position authored, paradigm:a358-a365 extracted with preflight clean, the position ledger flipped to asserted with refs, and plan-app's positions surface federated with a live DAG join replacing the declared-status cache per cb:a386.",
+        "artifact": "session:2026-06-11-positions-pipeline"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a367",
+    "type": "directive",
+    "kind": "action-item",
+    "domain": "design",
+    "tags": [
+      "backlog",
+      "lifecycle:discrete",
+      "extraction"
+    ],
+    "claim": "Extract the eval-architecture-is-agentic-epistemics positions into this collection: eight candidate beliefs are staged with extraction notes in sources/2026-06-10-eval-architecture-is-agentic-epistemics.md, deferred until the four-type schema landed. The condition is met (2026-06-10); the candidates are native inferences and home here per the distro boundary (mission content in collections, framework self-documentation in cb:).",
+    "artifact": "document:sources/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Persisted to the graph at stasis entry per cb:a489 (the obligation previously lived only in session memory and the source doc's extraction notes). The source preserves the identity-thesis exchange verbatim; extraction follows the positions pipeline precedent (cb:a484-a488).",
+        "artifact": "document:sources/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      },
+      {
+        "date": "2026-06-11",
+        "detail": "Discharged at the first observation lap, with a finding: the extraction predated the directive - another session had already extracted all eight claims (a358-a365) before a367 was authored from stale session memory. Materialized with refs to the pre-existing nodes rather than retracted: the prescription was sound and the world had already complied. The incident is the live specimen for cb:a501 (the recency view) and a worked instance of the graph-over-memory rule: the graph is the SSOT of what remains to be done; session memory is not.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "sources/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+        "type": "doc"
+      }
+    ],
+    "deps": [],
+    "materialized": {
+      "date": "2026-06-11",
+      "todos": [
+        "paradigm:a358",
+        "paradigm:a359",
+        "paradigm:a360",
+        "paradigm:a361",
+        "paradigm:a362",
+        "paradigm:a363",
+        "paradigm:a364",
+        "paradigm:a365"
+      ]
+    },
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a368",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "design",
+    "tags": [
+      "evidence-grade",
+      "anecdote"
+    ],
+    "claim": "Beliefs derived from single-operator field use carry the tag 'anecdote': they link, dep, and surface like any belief, and any methodology contract may discount them by tag. The fixture-tag precedent applied to evidence grade - anecdotal-but-inspectable is a first-class class of evidence, never a caveat in prose, and never mistakable for an eval finding.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Minted in the significance exchange: the operator judged the system's first self-application worth recording ahead of proper eval evidence, on condition the grade is visible. Stipulated by the thread; modeled on method:a5's fixture rule.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a369",
+    "type": "primitive",
+    "kind": "outcome-claim",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "self-application",
+      "verification"
+    ],
+    "claim": "During the four-type schema landing (2026-06-10), the system's deterministic checks did load-bearing work against their own authors: preflight surfaced two contracts missing from a twice-reviewed supersession list (c026/c027), the subject-containment check found a genuine escape no one had flagged (agent-behavior:a123), the kind-type table forced roughly thirty re-homes the design inventory said would not exist, and the grounding rule exposed its own scheme list as incomplete against the design's own worked examples.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Each instance is independently walkable: the preflight reviews live in the plan-0 primitives' evidence, a123's re-home in its supersession record, the re-homes in the migration report, the document: amendment inline in design.md. Anecdote-tagged: single operator, no counterfactual.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a370",
+    "type": "primitive",
+    "kind": "outcome-claim",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "self-application",
+      "self-hosting"
+    ],
+    "claim": "The system absorbed a breaking change to its own foundations through its own front door: the status-lifecycle contract was superseded via the lifecycle it defines, the type enum replaced through adjudication, with no maintenance hatch used because none was needed - the audit trail stayed complete at the exact place such trails normally go dark.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The operator-side counterpart of cb:a498 (the shippable design-property statement); this node records that it happened in live use, anecdote-tagged.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a371",
+    "type": "primitive",
+    "kind": "outcome-claim",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "multi-session",
+      "coordination"
+    ],
+    "claim": "Three agent sessions worked the same two repos concurrently (2026-06-10/11) without colliding: positions extracted, a deviation recorded, the version vocabulary retired, and the schema landing pushed - each session reconstructing state from the graph and its records rather than from any shared conversation memory. The single-trust-domain case of the shared-epistemic-layer thesis now has an existence proof.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The sessions held disjoint session memories; coordination ran entirely through the substrate. The multi-party, cross-trust-boundary case remains open (cb:a495 on the desk). Anecdote-tagged.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a372",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "meta-regress",
+      "governance"
+    ],
+    "claim": "The meta-regress terminated in practice: every should-this-be-persisted question in the stasis discussion was answerable by the system's own rules, and when a rule was missing, minting it took one node (cb:a496) which immediately governed the next decision (cb:a497) - the rules about rules live in the same substrate as the rules, so there is no second system to maintain.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "a496's first governed decision was its own persistence path; its second was a497's. Anecdote-tagged.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a373",
+    "type": "inference",
+    "kind": "outcome-claim",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "self-application"
+    ],
+    "claim": "Under its first heavy self-application load, the mechanism self-corrected: the checks caught their authors' errors, the foundations changed without a bypass, concurrent sessions coordinated through the substrate, and the meta-level governed itself. Anecdotal evidence, single-operator and counterfactual-free, that the system points the right direction - the hypothesis the dag-vs-prose eval exists to adjudicate, not a finding.",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The generalization over a369-a372, drawn in the significance exchange with its deflators attached (n=1, authoring-time only per cb:a493, smoothness discounted as the least trustworthy signal).",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a369",
+      "paradigm:a370",
+      "paradigm:a371",
+      "paradigm:a372"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a374",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "ssot",
+      "dry"
+    ],
+    "who": "mark",
+    "claim": "The structure self-regulates because it is granular SSOT ensuring DRY: every fact has exactly one home at claim granularity, references between facts are machine-checked (staleness, verification, preflight), and the meta-level lives in the same substrate as the object level - so layers of cognitive cruft cannot silently accumulate on top of the system, because a new layer must dep on the old and collides in preflight if it quietly contradicts it.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Mark's formulation in the significance exchange, sharpened in discussion: DRY here is an invariant with an alarm rather than a virtue, and claim-level granularity makes supersession surgical where page-level SSOT forces provenance-destroying rewrites.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a375",
+    "type": "primitive",
+    "kind": "analogical-claim",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "event-sourcing",
+      "structural-parallel"
+    ],
+    "claim": "CB is to epistemics what Temporal is to execution: both are event-sourced - state as a fold over an immutable append-only history - which makes surviving a boundary (worker crash there, session end here) a structural property rather than a discipline. The difference is what replay reconstructs: Temporal replays execution and answers where the workflow was; CB's history is semantic and walking it reconstructs justification - why this is believed and what still rests on it. Belief graph : agent sessions :: event history : Temporal workers.",
+    "artifact": "https://temporal.io",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Raised by Mark in the significance exchange (the queryable/replayable quality harkening to Temporal); sibling to a355's BEAM analogy in the same structural-parallel family.",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a376",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "emergence",
+      "generativity"
+    ],
+    "claim": "The 2026-06-10/11 events sort into three bins: engineered outcomes that performed to spec (the memoryless bootstrap, the desk, ceremony rules governing later decisions); designed-for generativity, where the class was anticipated but the instances were not (checks catching their own authors, rules governing cold agents across process boundaries, the conflict gate surfacing the exact adjacency under debate); and genuine surprises whose unscripted character is proven by the co-occurring error record - the surprises ran both directions, which is what unscripted looks like.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The agent's calibrated self-assessment when asked whether the week's synergies were emergent, synchronistic, or anticipated; preserved verbatim in the position. The error record doing the proving: three contract supersessions missed by the design doc, a thirty-node re-home undercount, a failed handoff, a dangling commit.",
+        "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a377",
+    "type": "inference",
+    "kind": "meta-observation",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "emergence",
+      "multi-session"
+    ],
+    "claim": "The cross-session correction loop is weak emergence in the standard sense: no component contains it - the verifier checks shapes, the liveness convention says read the tree, sessions are independent - yet the ensemble produces agents catching each other's errors through the substrate, a behavior nobody coded and nobody planned.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Generalizes over a369 (checks against authors) and a371 (three-session coordination), with the dangling-commit catch as the clearest instance: the memoryless bootstrap enforced the ephemeral-memory rule against the session that authored it. Deflator retained from the position: most synchronicities in a dense self-referential graph are base-rate effects; this loop is the residue that survives the deflation.",
+        "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a369",
+      "paradigm:a371"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a378",
+    "type": "inference",
+    "kind": "meta-observation",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "emergence",
+      "adjudicability"
+    ],
+    "claim": "Emergence claims are adjudicable in a system that records its predictions: when forecasts live in transcripts, surprises land as dated evidence entries, and failures are postscripts, anticipated-versus-surprised can be scored against the ledger instead of narrated. Most emergence debates are unfalsifiable precisely because no substrate held the predictions.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The position's keeper claim, standing beyond the week's anecdotes: the bare-begin prediction was on the record before the experiment, which is what made the post-hoc classification scoring rather than storytelling. A paradigm-grade property of prediction-recording substrates generally.",
+        "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a376"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a379",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "domain": "design",
+    "tags": [
+      "anecdote",
+      "steering",
+      "narrative"
+    ],
+    "who": "mark",
+    "claim": "Prose narrative is the operator's steering bandwidth: a narrative recounting of an epoch (where things stood, the arc, where things stand now) does what dry summaries cannot - it lets the human keep up with agent-speed work well enough to direct it. Comprehension converts records into steering; narrative is the format that converts fastest.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Mark's observation at the close of the 2026-06 epoch, prompted by an agent's before/after overview of the stasis state: across the epoch his comprehension tracked the narrative artifacts (the blog drafts, the overviews), and his steering quality tracked his comprehension. Formalized framework-side as the chronicle convention (cb:a520).",
+        "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a380",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "agent",
+    "tags": [
+      "lifecycle:recurring",
+      "authoring-context"
+    ],
+    "claim": "Consumer-blind CB-core content - CB's identity, mechanism, and schema, whether as docs or cb: graph nodes - must not be authored from a session whose working context is saturated with a downstream consumer's lens (a long eval/amieval strategy thread, say). That saturated context is where the lens-elevated-to-ontology contamination the one-way-knowledge invariant forbids enters the prose. Defer such authoring to a fresh CB-side context and demand-pull it: write it when a real use pulls it, not for completeness.",
+    "artifact": "session:2026-06-23-beyond-the-ledger",
+    "evidence": [
+      {
+        "date": "2026-06-23",
+        "detail": "Settled across a long consumer-side (amieval/eval) strategy thread. Three observations grounded it: (1) the thread's own 2026-06-13 Kahneman rewrite defined CB as 'the machine-checkable instantiation of the fifty-year debiasing verdict', elevating a lens to CB's identity, which a separate 2026-06-16 session corrected via the division and the consumer-blind identity doc (cb-direction/direction/2026-06-16-identity-and-invariants/); (2) near the close the agent was asked to persist 'beyond the ledger' into cb-direction and nearly did so before checking git history and finding the 6-16 one-way-knowledge invariant, then routed the consumer-saturated doc to amieval-direction (direction/2026-06-23-beyond-the-ledger/) instead; (3) the agent declined to author a use-neutral CB-core capability doc from the same context, applying the corollary to itself. Narrative recorded in amieval-direction/chronicles/2026-06-23-the-lenses-and-beyond-the-ledger.md. Tag-overlap review: preflight against paradigm surfaced 0 contract and 0 schema conflicts and 11 supportive subject-overlap matches (generic agent-subject nodes, none a conceptual parent); overlap is supportive, not contradiction, since this adds an authoring-context guard those nodes do not state (overlap necessary but not sufficient for conflict).",
+        "artifact": "session:2026-06-23-beyond-the-ledger"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-23"
   }
- },
- {
-  "id": "paradigm:a368",
-  "type": "directive",
-  "kind": "convention",
-  "domain": "design",
-  "tags": [
-   "evidence-grade",
-   "anecdote"
-  ],
-  "claim": "Beliefs derived from single-operator field use carry the tag 'anecdote': they link, dep, and surface like any belief, and any methodology contract may discount them by tag. The fixture-tag precedent applied to evidence grade - anecdotal-but-inspectable is a first-class class of evidence, never a caveat in prose, and never mistakable for an eval finding.",
-  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Minted in the significance exchange: the operator judged the system's first self-application worth recording ahead of proper eval evidence, on condition the grade is visible. Stipulated by the thread; modeled on method:a5's fixture rule.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a369",
-  "type": "primitive",
-  "kind": "outcome-claim",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "self-application",
-   "verification"
-  ],
-  "claim": "During the four-type schema landing (2026-06-10), the system's deterministic checks did load-bearing work against their own authors: preflight surfaced two contracts missing from a twice-reviewed supersession list (c026/c027), the subject-containment check found a genuine escape no one had flagged (agent-behavior:a123), the kind-type table forced roughly thirty re-homes the design inventory said would not exist, and the grounding rule exposed its own scheme list as incomplete against the design's own worked examples.",
-  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Each instance is independently walkable: the preflight reviews live in the plan-0 primitives' evidence, a123's re-home in its supersession record, the re-homes in the migration report, the document: amendment inline in design.md. Anecdote-tagged: single operator, no counterfactual.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a370",
-  "type": "primitive",
-  "kind": "outcome-claim",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "self-application",
-   "self-hosting"
-  ],
-  "claim": "The system absorbed a breaking change to its own foundations through its own front door: the status-lifecycle contract was superseded via the lifecycle it defines, the type enum replaced through adjudication, with no maintenance hatch used because none was needed - the audit trail stayed complete at the exact place such trails normally go dark.",
-  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "The operator-side counterpart of cb:a498 (the shippable design-property statement); this node records that it happened in live use, anecdote-tagged.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a371",
-  "type": "primitive",
-  "kind": "outcome-claim",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "multi-session",
-   "coordination"
-  ],
-  "claim": "Three agent sessions worked the same two repos concurrently (2026-06-10/11) without colliding: positions extracted, a deviation recorded, the version vocabulary retired, and the schema landing pushed - each session reconstructing state from the graph and its records rather than from any shared conversation memory. The single-trust-domain case of the shared-epistemic-layer thesis now has an existence proof.",
-  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "The sessions held disjoint session memories; coordination ran entirely through the substrate. The multi-party, cross-trust-boundary case remains open (cb:a495 on the desk). Anecdote-tagged.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a372",
-  "type": "primitive",
-  "kind": "meta-observation",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "meta-regress",
-   "governance"
-  ],
-  "claim": "The meta-regress terminated in practice: every should-this-be-persisted question in the stasis discussion was answerable by the system's own rules, and when a rule was missing, minting it took one node (cb:a496) which immediately governed the next decision (cb:a497) - the rules about rules live in the same substrate as the rules, so there is no second system to maintain.",
-  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "a496's first governed decision was its own persistence path; its second was a497's. Anecdote-tagged.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a373",
-  "type": "inference",
-  "kind": "outcome-claim",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "self-application"
-  ],
-  "claim": "Under its first heavy self-application load, the mechanism self-corrected: the checks caught their authors' errors, the foundations changed without a bypass, concurrent sessions coordinated through the substrate, and the meta-level governed itself. Anecdotal evidence, single-operator and counterfactual-free, that the system points the right direction - the hypothesis the dag-vs-prose eval exists to adjudicate, not a finding.",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "The generalization over a369-a372, drawn in the significance exchange with its deflators attached (n=1, authoring-time only per cb:a493, smoothness discounted as the least trustworthy signal).",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a369",
-   "paradigm:a370",
-   "paradigm:a371",
-   "paradigm:a372"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a374",
-  "type": "primitive",
-  "kind": "meta-observation",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "ssot",
-   "dry"
-  ],
-  "who": "mark",
-  "claim": "The structure self-regulates because it is granular SSOT ensuring DRY: every fact has exactly one home at claim granularity, references between facts are machine-checked (staleness, verification, preflight), and the meta-level lives in the same substrate as the object level - so layers of cognitive cruft cannot silently accumulate on top of the system, because a new layer must dep on the old and collides in preflight if it quietly contradicts it.",
-  "artifact": "document:plans/cb-schema-v2/transcript-execution.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Mark's formulation in the significance exchange, sharpened in discussion: DRY here is an invariant with an alarm rather than a virtue, and claim-level granularity makes supersession surgical where page-level SSOT forces provenance-destroying rewrites.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a375",
-  "type": "primitive",
-  "kind": "analogical-claim",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "event-sourcing",
-   "structural-parallel"
-  ],
-  "claim": "CB is to epistemics what Temporal is to execution: both are event-sourced - state as a fold over an immutable append-only history - which makes surviving a boundary (worker crash there, session end here) a structural property rather than a discipline. The difference is what replay reconstructs: Temporal replays execution and answers where the workflow was; CB's history is semantic and walking it reconstructs justification - why this is believed and what still rests on it. Belief graph : agent sessions :: event history : Temporal workers.",
-  "artifact": "https://temporal.io",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Raised by Mark in the significance exchange (the queryable/replayable quality harkening to Temporal); sibling to a355's BEAM analogy in the same structural-parallel family.",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a376",
-  "type": "primitive",
-  "kind": "meta-observation",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "emergence",
-   "generativity"
-  ],
-  "claim": "The 2026-06-10/11 events sort into three bins: engineered outcomes that performed to spec (the memoryless bootstrap, the desk, ceremony rules governing later decisions); designed-for generativity, where the class was anticipated but the instances were not (checks catching their own authors, rules governing cold agents across process boundaries, the conflict gate surfacing the exact adjacency under debate); and genuine surprises whose unscripted character is proven by the co-occurring error record - the surprises ran both directions, which is what unscripted looks like.",
-  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "The agent's calibrated self-assessment when asked whether the week's synergies were emergent, synchronistic, or anticipated; preserved verbatim in the position. The error record doing the proving: three contract supersessions missed by the design doc, a thirty-node re-home undercount, a failed handoff, a dangling commit.",
-    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a377",
-  "type": "inference",
-  "kind": "meta-observation",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "emergence",
-   "multi-session"
-  ],
-  "claim": "The cross-session correction loop is weak emergence in the standard sense: no component contains it - the verifier checks shapes, the liveness convention says read the tree, sessions are independent - yet the ensemble produces agents catching each other's errors through the substrate, a behavior nobody coded and nobody planned.",
-  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Generalizes over a369 (checks against authors) and a371 (three-session coordination), with the dangling-commit catch as the clearest instance: the memoryless bootstrap enforced the ephemeral-memory rule against the session that authored it. Deflator retained from the position: most synchronicities in a dense self-referential graph are base-rate effects; this loop is the residue that survives the deflation.",
-    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a369",
-   "paradigm:a371"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a378",
-  "type": "inference",
-  "kind": "meta-observation",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "emergence",
-   "adjudicability"
-  ],
-  "claim": "Emergence claims are adjudicable in a system that records its predictions: when forecasts live in transcripts, surprises land as dated evidence entries, and failures are postscripts, anticipated-versus-surprised can be scored against the ledger instead of narrated. Most emergence debates are unfalsifiable precisely because no substrate held the predictions.",
-  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "The position's keeper claim, standing beyond the week's anecdotes: the bare-begin prediction was on the record before the experiment, which is what made the post-hoc classification scoring rather than storytelling. A paradigm-grade property of prediction-recording substrates generally.",
-    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [
-   "paradigm:a376"
-  ],
-  "status": "active",
-  "created": "2026-06-11"
- },
- {
-  "id": "paradigm:a379",
-  "type": "primitive",
-  "kind": "meta-observation",
-  "domain": "design",
-  "tags": [
-   "anecdote",
-   "steering",
-   "narrative"
-  ],
-  "who": "mark",
-  "claim": "Prose narrative is the operator's steering bandwidth: a narrative recounting of an epoch (where things stood, the arc, where things stand now) does what dry summaries cannot - it lets the human keep up with agent-speed work well enough to direct it. Comprehension converts records into steering; narrative is the format that converts fastest.",
-  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
-  "evidence": [
-   {
-    "date": "2026-06-11",
-    "detail": "Mark's observation at the close of the 2026-06 epoch, prompted by an agent's before/after overview of the stasis state: across the epoch his comprehension tracked the narrative artifacts (the blog drafts, the overviews), and his steering quality tracked his comprehension. Formalized framework-side as the chronicle convention (cb:a520).",
-    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
-   }
-  ],
-  "subjects": [],
-  "deps": [],
-  "status": "active",
-  "created": "2026-06-11"
- }
 ]
