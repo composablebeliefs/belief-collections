@@ -1025,6 +1025,11 @@
         "date": "2026-06-22",
         "detail": "During an audit+collapse of the knowledge repo the agent worked from local conversation context and re-derived the thread-persistence convention instead of querying the live graph: it hand-wrote a type:thread summary mid-session and hand-edited CLAUDE.md with an operational directive, both violating active directives (cb:a540 thread-persistence at /end; KNOWLEDGE.md 1.1 operational-directives-live-in-the-graph). MEMORY.md explicitly points to the cb session-start desk/directive query that would have surfaced them; the agent skipped it. Invisible until the operator asked 'it was decided we persist threads at /end... is that correct? check /end', forcing the agent to read /end and the graph. A memory pointer to query the graph is procedural surfacing (the a386 antipattern aimed at the agent's own onboarding).",
         "artifact": "session:2026-06-22-knowledge-audit-collapse"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "Specimen (2026-06-22, okf-fold tooling-rename follow-ups): drafting a note in the new amieval/CLAUDE.md, the agent wrote the file was 'hand-written until cb:a543 lands, then it should compile from the graph' - grounding the deferral in cb:a543 from memory of 'there is a global-directive-graph directive,' without reading cb:a543 (which actually governs the global ~/.claude graph, an unrelated target) or querying whether an existing belief already settled the hand-written-vs-compiled question. Preflight on a would-be NEW convention surfaced cb:a466, which already governs it (generated prose compiles where there is an oracle; hand-written prose is reserved and must not freeze drifting lists). The mis-grounding stayed invisible until the operator asked 'is this something we can resolve now?'. Same root as the session-start specimen: substituting memory for querying the live graph. The query-first fix both corrected the dependency (cb:a543 -> cb:a466) and caught that amieval/CLAUDE.md's hand-frozen repos list violated a466's no-frozen-lists rule - the knowledge entry had just gone stale.",
+        "artifact": "document:../composable-beliefs/plans/okf-fold/sessions/2026-06-22-okf-fold-execution.jsonl"
       }
     ],
     "subjects": [
