@@ -1020,6 +1020,11 @@
         "date": "2026-03-27",
         "detail": "The agent composed a draft with one attachment version. The user swapped in a different version and sent it. When processing the sent message, the agent proposed updating a field to the original version without reading the attachment metadata from the synced thread. The agent substituted its memory of composing the draft for the actual sent content. Caught when the user asked whether the agent actually saw that version attached.",
         "artifact": "session:2026-03-27"
+      },
+      {
+        "date": "2026-06-22",
+        "detail": "During an audit+collapse of the knowledge repo the agent worked from local conversation context and re-derived the thread-persistence convention instead of querying the live graph: it hand-wrote a type:thread summary mid-session and hand-edited CLAUDE.md with an operational directive, both violating active directives (cb:a540 thread-persistence at /end; KNOWLEDGE.md 1.1 operational-directives-live-in-the-graph). MEMORY.md explicitly points to the cb session-start desk/directive query that would have surfaced them; the agent skipped it. Invisible until the operator asked 'it was decided we persist threads at /end... is that correct? check /end', forcing the agent to read /end and the graph. A memory pointer to query the graph is procedural surfacing (the a386 antipattern aimed at the agent's own onboarding).",
+        "artifact": "session:2026-06-22-knowledge-audit-collapse"
       }
     ],
     "subjects": [
