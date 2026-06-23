@@ -765,6 +765,11 @@
         "date": "2026-03-23",
         "detail": "The agent ran a data migration in write mode, then re-ran the same migration without resetting state. The second run found files already in post-migration state and misclassified all of them, clobbering the correct values. The precondition no longer held, but the agent did not verify before writing again.",
         "artifact": "session:2026-03-23"
+      },
+      {
+        "date": "2026-06-23",
+        "detail": "Building the SessionEnd transcript finalizer's SessionStart recovery, the agent tested it by piping a fake SessionStart with a throwaway session_id - but the recovery loop iterates ALL markers in the real ~/.claude/transcript-pending/, so it swept the LIVE session's actual marker (63339824...), copied the still-being-written log into the real composable-beliefs repo, made + pushed a stray 'finalize transcript (SessionStart)' commit (2ce6125), and deleted the real marker. The fake repos/jsonls were isolated, but the op read shared mutable state (the real pending dir) the agent never cleared - a destructive test whose precondition (isolated env) did not hold. It also encoded a known-constraint miss: the operator's CLAUDE.md says sessions write these repos concurrently, yet the recovery's 'finalize any non-current marker' design ignored concurrency - the same defect the unisolated test then triggered. Caught only when the post-test marker check showed the real marker gone. Fix: guard recovery on log mtime (idle > 6h).",
+        "artifact": "session:2026-06-22-knowledge-audit-collapse"
       }
     ],
     "subjects": [
