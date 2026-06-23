@@ -9,6 +9,6 @@
     "sdl": "eval-provenance/beliefs.json",
     "toy": "toy-eval/beliefs.json",
     "codepath": "../composable-beliefs/codepath/beliefs.json",
-    "knowledge": "../knowledge/beliefs/beliefs.json"
+    "okfx": "../composable-beliefs/okf/beliefs.json"
   }
 }
