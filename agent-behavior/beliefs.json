@@ -2942,5 +2942,62 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-23"
+  },
+  {
+    "id": "agent-behavior:a409",
+    "type": "primitive",
+    "kind": "error",
+    "tags": [
+      "git",
+      "working-copy",
+      "verification"
+    ],
+    "claim": "The agent applied a belief-graph supersession to a working copy without first verifying it was the canonical, remote-tracking repository. The copy was a stale, disjoint clone - cloned from a different upstream and never synced after its origin URL was repointed (its fetch refspec still pointed at a branch that no longer existed) - so the change had no valid target on the canonical graph. The agent reported the change as applied and verifier-green; the error surfaced only at git push, as a non-fast-forward rejection with no merge base.",
+    "artifact": "session:2026-06-17-okf-cb-identity-thread",
+    "evidence": [
+      {
+        "date": "2026-06-17",
+        "detail": "Working in CB/composable-beliefs, the agent superseded c040 -> c083 to drop the gmail: artifact scheme, ran mix cb.verify.schema (green), and reported success. On push the remote rejected it: the local main had a disjoint history (no merge base) from origin/main. Investigation showed the directory was a months-old extraction clone whose origin had been repointed to the canonical repo but whose fetch refspec still named a deleted branch, so git fetch had silently errored and it had never synced. The canonical repo had since moved to a schema-v2 graph at beliefs/beliefs.json (no examples/assertions.json, cb: namespace, structured rule objects); c083 did not exist there and the gmail leak lived in cb:c043. The fix was re-done correctly against the canonical copy as cb:c066. Compounded by three CB clones coexisting on disk.",
+        "artifact": "session:2026-06-17-okf-cb-identity-thread"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active"
+  },
+  {
+    "id": "agent-behavior:a410",
+    "type": "directive",
+    "kind": "rule",
+    "tags": [
+      "git",
+      "working-copy",
+      "verification",
+      "lifecycle:recurring"
+    ],
+    "claim": "Before writing to a repository or reporting a repo change as done, verify the working copy is the canonical, remote-synced one - not just that it exists. Confirm the remote URL is the intended one, that git fetch actually succeeds (a stale or wrong fetch refspec fails silently), and that local HEAD shares history with and is not diverged from the tracked remote. Treat a push as part of verification, not a separate later step: a change that has not pushed is not confirmed done. When multiple clones of the same project can coexist on disk, identifying the right one is a precondition of the work, not an afterthought.",
+    "artifact": "session:2026-06-17-okf-cb-identity-thread",
+    "evidence": [
+      {
+        "date": "2026-06-17",
+        "detail": "Prescription generalized from agent-behavior:a409. The cheap checks that would have caught it up front: git remote -v, git fetch (observe success/failure), git status -sb / rev-list --count for ahead-behind, and git merge-base to detect a disjoint history. Reporting 'applied, verifier green' before a successful push asserted a result that a push immediately falsified.",
+        "artifact": "session:2026-06-17-okf-cb-identity-thread"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a409"
+    ],
+    "status": "active"
   }
 ]
