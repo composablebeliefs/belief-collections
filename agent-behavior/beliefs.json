@@ -2999,5 +2999,36 @@
       "agent-behavior:a409"
     ],
     "status": "active"
+  },
+  {
+    "id": "agent-behavior:a411",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "provenance",
+      "citation"
+    ],
+    "name": "verbatim-citation-alongside-pointer",
+    "claim": "When citing a source in prose or a thread doc - a belief id, a numbered section, or a file:line - quote the load-bearing passage verbatim alongside the pointer. Keep the excerpt to the sentence or two the claim rests on.",
+    "artifact": "session:2026-06-25-belief-audit",
+    "evidence": [
+      {
+        "date": "2026-06-25",
+        "detail": "Adopted in the 2026-06-25 belief-audit session as cb:a475's verbatim-leaning discipline extended from primitive-authoring to citation: the pointer enables navigation, the quoted passage enables verification without it. Prompted by the agent citing KNOWLEDGE.md sections by number without quoting them.",
+        "artifact": "session:2026-06-25-belief-audit"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "cb:a475"
+    ],
+    "status": "active",
+    "created": "2026-06-25"
   }
 ]
