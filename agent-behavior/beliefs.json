@@ -3061,5 +3061,35 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-26"
+  },
+  {
+    "id": "agent-behavior:a413",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "edge-case",
+      "risk",
+      "verification"
+    ],
+    "name": "dont-dismiss-self-identified-edge-cases",
+    "claim": "When you identify an edge case or failure mode while building something, do not dismiss it as 'rare' or low-probability without evidence - handle it, or quantify the risk before shipping past it. The self-identified failure mode waved off without measurement is the one that bites.",
+    "artifact": "session:2026-06-25-belief-audit",
+    "evidence": [
+      {
+        "date": "2026-06-26",
+        "detail": "While building the transcript hook's responses-only filter (keep text after a turn's last tool call), the agent flagged the exact failure mode - 'substantive text immediately before a trailing tool call would be dropped' - and dismissed it as 'rare in my pattern'. It then dropped the operator's most substantive answer of a turn (a repo-weight plus seeds-vs-directives analysis given before the commit tools that acted on it). Inverse of agent-behavior:a404 (establish the guarded-against case is real before relying on a guard): here a real case was dismissed as rare.",
+        "artifact": "session:2026-06-25-belief-audit"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-26"
   }
 ]
