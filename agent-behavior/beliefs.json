@@ -2908,6 +2908,11 @@
         "date": "2026-06-12",
         "detail": "Narrative record for session:2026-06-12-hindsight-comparison: composable-beliefs/chronicles/2026-06-12-the-boundary-was-only-prose.md (the comparison that surfaced this slip, and the a539 boundary fix).",
         "artifact": "document:chronicles/2026-06-12-the-boundary-was-only-prose.md"
+      },
+      {
+        "date": "2026-06-26",
+        "detail": "2026-06-26: while reassuring the operator that no work was lost after a graph rollback, the agent asserted 'multiple CB clones coexist on disk' as a present fact and attributed it to agent-behavior:a410. a410's claim is actually the general conditional rule (when multiple clones can coexist, identify the right one); the 'three CB clones coexist' figure was a point-in-time note in a410's commit message from the 2026-06-17 incident, nine days stale. The agent recalled that note, stated it as present-tense fact, and built rollback speculation on it before verifying. A later filesystem check found the claim happens to be true (two checkouts exist), but the assertion was not earned when made. Surfaced when the operator challenged it.",
+        "artifact": "session:2026-06-25-belief-audit"
       }
     ],
     "subjects": [
