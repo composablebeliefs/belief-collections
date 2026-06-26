@@ -3030,5 +3030,36 @@
     ],
     "status": "active",
     "created": "2026-06-25"
+  },
+  {
+    "id": "agent-behavior:a412",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "drift",
+      "code-smell",
+      "schema",
+      "format"
+    ],
+    "name": "drift-is-a-code-smell",
+    "claim": "Treat divergence in schema, format, or directory placement across artifacts that should share a shape as a code smell - flag and reconcile it, never accommodate or rationalize it post-hoc. Inconsistency between like artifacts is a defect signal, not an acceptable variation.",
+    "artifact": "session:2026-06-25-belief-audit",
+    "evidence": [
+      {
+        "date": "2026-06-26",
+        "detail": "Surfaced when the agent justified storing session transcripts in a gitignored dotdir as 'avoiding git churn' rather than as a decision about whether the transcript is a persisted artifact - filing a design question under mechanical convenience. Same session: the agent tolerated belief-audit.md and the .sessions transcripts carrying different formats, rationalizing them as 'different kinds' instead of flagging the divergence. The operator named the pattern: agents tend to be fine with docs carrying drifted schemas, formats, and placement protocols when these should be code smells.",
+        "artifact": "session:2026-06-25-belief-audit"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-26"
   }
 ]
